@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "BoundaryDenyPrivilegeEscalation",
+        "Effect": "Deny",
+        "Action": [
+          "iam:CreateAccessKey",
+          "iam:CreateLoginProfile",
+          "iam:AttachUserPolicy",
+          "iam:AttachGroupPolicy",
+          "iam:AttachRolePolicy",
+          "iam:PutUserPolicy",
+          "iam:PutGroupPolicy",
+          "iam:PutRolePolicy",
+          "iam:PassRole"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Sid": "BoundaryDenyS3Admin",
+        "Effect": "Deny",
+        "Action": [
+          "s3:PutBucketAcl",
+          "s3:PutBucketPolicy",
+          "s3:DeleteBucketPolicy",
+          "s3:PutEncryptionConfiguration",
+          "s3:PutReplicationConfiguration"
+        ],
+        "Resource": "*"
+      }
+    ]
+  }

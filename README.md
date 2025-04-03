@@ -1,5 +1,7 @@
 # AWS IAM Permission Boundary + Security Guardrails (Terraform)
 
+> 🔐 This project demonstrates how to use IAM permission boundaries to prevent privilege escalation, even when AdministratorAccess is granted.
+
 ## 🛡️ Overview
 
 This project defines an IAM permission boundary that enforces strict security guardrails across roles and users — even when administrators try to overgrant permissions. All infrastructure is deployed via Terraform.
@@ -43,11 +45,15 @@ You give a developer IAM:AdministratorAccess — but the permission boundary pre
 
 ## 🧪 Test Flow
 
-1. Deploy via `terraform apply`
-2. Attach boundary to a new IAM role
-3. Try to assign full permissions (simulate an admin mistake)
-4. Try to perform blocked actions (`iam:PassRole`, `s3:GetObject`, etc.)
-5. Confirm access is denied — boundary overrides admin intent
+1. Deploy with `terraform apply`
+2. Go to IAM → Roles → `test-restricted-role`
+3. Attach the AWS-managed `AdministratorAccess` policy
+4. Try to:
+   - Create an IAM access key
+   - Attach another IAM policy
+   - Modify an S3 bucket policy
+
+All actions should fail — the permission boundary prevents escalation even when full admin is granted
 
 ---
 
