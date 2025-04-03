@@ -1,0 +1,15 @@
+# Terraform junk
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.log
+
+# OS junk
+.DS_Store
+.idea/
+.vscode/
+
+# Sensitive files
+*.pem
+*.key
+*.env
